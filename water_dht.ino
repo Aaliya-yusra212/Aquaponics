@@ -1,20 +1,20 @@
 #include <WiFi.h>
 WiFiClient client;
-const char* MY_SSID = "VVCE_Sports Complex";
-const char* MY_PWD = "Vvce_9271";
+const char* MY_SSID = //wifi name
+const char* MY_PWD =//wifi password
 const char* TS_SERVER = "api.thingspeak.com";
-String TS_API_KEY ="BCZKYGEYV1Y5ZXV7";
+String TS_API_KEY =//ThingSpeak API key
 #include "DHT.h"
-#define DHTPIN 2
+#define DHTPIN 2//DHT pin
 #define DHTTYPE DHT11
 #define POWER_PIN  17 // VCC pin
-#define SIGNAL_PIN 34
+#define SIGNAL_PIN 34//waterLevel pin
 DHT dht(DHTPIN, DHTTYPE);
 int value = 0;
 const int buzzerPin = 13;
-const int l1=5;
-const int l2=4;
-const int l3=18;
+const int l1=5;//led 1
+const int l2=4;//led 2
+const int l3=18;//led 3
 void connectWifi()
 {
   Serial.print("Connecting to "+ *MY_SSID);
