@@ -1,20 +1,20 @@
 #include <WiFi.h>
 WiFiClient client;
-const char* MY_SSID = "VVCE_Sports Complex";
-const char* MY_PWD = "Vvce_9271";
+const char* MY_SSID =//Your WiFi name
+const char* MY_PWD = //WiFi Password
 const char* TS_SERVER = "api.thingspeak.com";
-String TS_API_KEY ="BCZKYGEYV1Y5ZXV7";
+String TS_API_KEY =//your ThingSpeak API key;
 #include "DHT.h"
-#define DHTPIN 2
+#define DHTPIN 2 //in pin 2
 #define DHTTYPE DHT11
 #define POWER_PIN  17 // VCC pin
-#define SIGNAL_PIN 34
+#define SIGNAL_PIN 34 //ESP32 pin for waterLevel sensor
 DHT dht(DHTPIN, DHTTYPE);
 int value = 0;
-const int buzzerPin = 13;
-const int l1=5;
-const int l2=4;
-const int l3=18;
+const int buzzerPin = 13;// buzzer pin:13
+const int l1=5;//led 1
+const int l2=4;//led 2
+const int l3=18;//led 3
 void connectWifi()
 {
   Serial.print("Connecting to "+ *MY_SSID);
@@ -32,7 +32,7 @@ void setup() {
   Serial.begin(9600);
   Serial.println(F("DHTxx test!"));
   Serial.begin(9600);
-  pinMode(POWER_PIN, OUTPUT);   // configure pin as an OUTPUT
+  pinMode(POWER_PIN, OUTPUT);   
   pinMode(buzzerPin, OUTPUT);
   pinMode(l1,OUTPUT);
   pinMode(l2,OUTPUT);
@@ -72,21 +72,24 @@ void loop()
 
   Serial.print("The water sensor value: ");
   Serial.println(value);
-  if(h<30){
+  if(h<30) // minimum humidity value 
+  {
   digitalWrite(l1,HIGH);
   digitalWrite(l2,LOW);
   digitalWrite(l3,LOW);
   digitalWrite(buzzerPin, HIGH);
   delay(100);
   }
-  else if(h>=30&&h<=60){
+  else if(h>=30&&h<=60)// mid humidity
+  {
   digitalWrite(l1,HIGH);
   digitalWrite(l2,HIGH);
   digitalWrite(l3,LOW);
   digitalWrite(buzzerPin, LOW);
   delay(100);
   }
-  else{
+  else// maximum humidity 
+  {
   digitalWrite(l1,HIGH);
   digitalWrite(l2,HIGH);
   digitalWrite(l3,HIGH);
